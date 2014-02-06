@@ -10,7 +10,7 @@ public class Tarefas {
 	
 	private Usuario proprietario;
 	
-	Persistencia persist = new Persistencia();
+	Persistencia<Usuario> persist = new Persistencia<Usuario>();
 	
 	public Usuario getProprietario(){
 		return this.proprietario;

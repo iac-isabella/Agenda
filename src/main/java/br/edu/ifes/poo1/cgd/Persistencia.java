@@ -8,8 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Persistencia {
+public class Persistencia<T extends Serializable>{
 	
 	String nomeArq = "contatos.dat";
 	
@@ -27,7 +28,7 @@ public class Persistencia {
 	
 	}
 	
-	public void gravarArquivo(Object object){
+	public void gravarArquivo(T object){
 		try{
 			ObjectOutputStream objectOut = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(arq)));              
 			objectOut.writeObject(object);  
@@ -41,11 +42,11 @@ public class Persistencia {
 	
 	public Object recuperarArquivo(){
 
-		Object object;  
+		T object;  
 		
 		try{  
             ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(arq)));  
-            object = in.readObject();  
+            object = (T) in.readObject();  
             in.close();  
             return object;  
         }
